@@ -36,7 +36,7 @@ export default function Navigation() {
             <Link
               key={item.href}
               href={item.href}
-              className={`nav-link ${pathname === item.href ? "text-primary font-bold" : ""}`}
+              className={`nav-link ${pathname === item.href ? "text-primary font-bold" : "text-muted-foreground"}`}
             >
               {item.label}
             </Link>
