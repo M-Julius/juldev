@@ -18,7 +18,7 @@ export default function Hero() {
           <div className="space-y-4">
             <div className="flex items-center justify-center space-x-4 text-4xl md:text-6xl lg:text-7xl">
               <span className="text-muted-foreground">{"{"}&quot;</span>
-              <h1 className="text-primary font-bold">_mobile engineer</h1>
+              <h1 className="text-primary font-bold">_mobile developer</h1>
               <span className="text-muted-foreground">&quot;{"}"}</span>
             </div>
           </div>

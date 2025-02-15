@@ -132,6 +132,7 @@ export default function Portfolio() {
                       src={project.images[0] || "/placeholder.svg"}
                       alt={project.title}
                       fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       className="object-cover transition-transform group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-background/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
@@ -191,6 +192,7 @@ export default function Portfolio() {
                         currentImageIndex + 1
                       }`}
                       fill
+                      sizes="(max-width: 600px) 95vw, 600px"
                       className="object-cover rounded-md"
                     />
                   </motion.div>

@@ -44,3 +44,24 @@
   @apply text-primary mr-1;
 }
 
+/* Anti-scraping styles */
+.contact-text {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+  text-align: left;
+}
+
+.contact-text span {
+  direction: ltr;
+  display: inline-block;
+  position: relative;
+  user-select: text;
+}
+
+.contact-text span::before {
+  content: var(--char);
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+

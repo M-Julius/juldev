@@ -1,71 +1,85 @@
-"use client"
+"use client";
 
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Mail, Phone, MapPin } from "lucide-react"
-import { useToast } from "@/components/ui/use-toast"
-import emailjs from '@emailjs/browser'
-import { useState } from "react"
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Mail, Phone, MapPin, Loader2 } from "lucide-react";
+import { useToast } from "@/components/ui/use-toast";
+import emailjs from "@emailjs/browser";
+import { useState } from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+
+const formSchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters"),
+  email: z.string().email("Please enter a valid email address"),
+  subject: z.string().min(3, "Subject must be at least 3 characters"),
+  message: z.string().min(10, "Message must be at least 10 characters"),
+});
+
+const contactInfo = {
+  email: "mjulius.dev@gmail.com".split("").map((char, i) => ({ char, id: i })),
+  phone: "+62 813-6672-4126".split("").map((char, i) => ({ char, id: i })),
+  location: "Jakarta, Indonesia".split("").map((char, i) => ({ char, id: i })),
+};
 
 export default function Contact() {
-  const { toast } = useToast()
-  const [isLoading, setIsLoading] = useState(false)
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: ""
-  })
+  const { toast } = useToast();
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }))
-  }
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      subject: "",
+      message: "",
+    },
+  });
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsLoading(true)
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    setIsLoading(true);
 
     try {
       const result = await emailjs.send(
-        'service_1p23wom', // Replace with your EmailJS service ID
-        'template_mcuph3u', // Replace with your EmailJS template ID
+        "service_1p23wom",
+        "template_mcuph3u",
         {
-          from_name: formData.name,
-          from_email: formData.email,
-          subject: formData.subject,
-          message: formData.message,
-          to_name: 'M Julius Saputra',
+          from_name: values.name,
+          from_email: values.email,
+          subject: values.subject,
+          message: values.message,
+          to_name: "M Julius Saputra",
         },
-        'sp3V86KfTTg00UItn' // Replace with your EmailJS public key
-      )
+        "sp3V86KfTTg00UItn"
+      );
 
       if (result.status === 200) {
         toast({
           title: "Success!",
           description: "Your message has been sent successfully.",
-        })
-        setFormData({
-          name: "",
-          email: "",
-          subject: "",
-          message: ""
-        })
+        });
+        form.reset();
       }
     } catch (error) {
       toast({
         title: "Error!",
         description: "Failed to send message. Please try again.",
-        variant: "destructive"
-      })
+        variant: "destructive",
+      });
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
 
   return (
     <main className="flex-1">
@@ -86,66 +100,162 @@ export default function Contact() {
                 <div className="space-y-6">
                   <h2 className="text-2xl font-bold">Contact Information</h2>
                   <div className="space-y-4">
-                    <div className="flex items-center space-x-3">
-                      <Mail className="text-primary" />
-                      <span className="text-muted-foreground">mjulius.dev@gmail.com</span>
+                    <div className="w-full flex items-center space-x-3 hover:text-primary transition-colors">
+                      <Mail className="text-primary flex-shrink-0" />
+                      <span className="text-muted-foreground flex">
+                        {contactInfo.email.map(({ char, id }) => (
+                          <span
+                            key={id}
+                            className="inline-block"
+                            style={{
+                              ["--char" as any]: `"${char}"`,
+                              content: "var(--char)",
+                            }}
+                            aria-hidden="true"
+                          >
+                            {char}
+                          </span>
+                        ))}
+                      </span>
                     </div>
-                    <div className="flex items-center space-x-3">
-                      <Phone className="text-primary" />
-                      <span className="text-muted-foreground">+62 813-6672-4126</span>
+
+                    <div className="w-full flex items-center space-x-3 hover:text-primary transition-colors">
+                      <Phone className="text-primary flex-shrink-0" />
+                      <span className="text-muted-foreground flex">
+                        {contactInfo.phone.map(({ char, id }) => (
+                          <span
+                            key={id}
+                            className="inline-block"
+                            style={{
+                              ["--char" as any]: `"${char}"`,
+                              content: "var(--char)",
+                            }}
+                            aria-hidden="true"
+                          >
+                            {char}
+                          </span>
+                        ))}
+                      </span>
                     </div>
+
                     <div className="flex items-center space-x-3">
-                      <MapPin className="text-primary" />
-                      <span className="text-muted-foreground">Jakarta, Indonesia</span>
+                      <MapPin className="text-primary flex-shrink-0" />
+                      <span className="text-muted-foreground flex">
+                        {contactInfo.location.map(({ char, id }) => (
+                          <span
+                            key={id}
+                            className="inline-block"
+                            style={{
+                              ["--char" as any]: `"${char}"`,
+                              content: "var(--char)",
+                            }}
+                            aria-hidden="true"
+                          >
+                            {char}
+                          </span>
+                        ))}
+                      </span>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="space-y-4">
-                  <Input 
-                    type="text" 
-                    name="name"
-                    placeholder="Name" 
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                  />
-                  <Input 
-                    type="email" 
-                    name="email"
-                    placeholder="Email" 
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                  />
-                  <Input 
-                    type="text" 
-                    name="subject"
-                    placeholder="Subject" 
-                    value={formData.subject}
-                    onChange={handleChange}
-                    required
-                  />
-                  <Textarea 
-                    name="message"
-                    placeholder="Message" 
-                    className="min-h-[150px]" 
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-                <Button type="submit" className="w-full" disabled={isLoading}>
-                  {isLoading ? "Sending..." : "Send Message"}
-                </Button>
-              </form>
+              <Form {...form}>
+                <form
+                  onSubmit={form.handleSubmit(onSubmit)}
+                  className="space-y-6"
+                >
+                  <div className="space-y-4">
+                    <FormField
+                      control={form.control}
+                      name="name"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Name</FormLabel>
+                          <FormControl>
+                            <Input
+                              placeholder="Enter your name"
+                              className="bg-secondary/50"
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="email"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Email</FormLabel>
+                          <FormControl>
+                            <Input
+                              type="email"
+                              placeholder="Enter your email"
+                              className="bg-secondary/50"
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="subject"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Subject</FormLabel>
+                          <FormControl>
+                            <Input
+                              placeholder="Enter subject"
+                              className="bg-secondary/50"
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="message"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Message</FormLabel>
+                          <FormControl>
+                            <Textarea
+                              placeholder="Enter your message"
+                              className="min-h-[150px] bg-secondary/50"
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+
+                  <Button type="submit" className="w-full" disabled={isLoading}>
+                    {isLoading ? (
+                      <>
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        Sending...
+                      </>
+                    ) : (
+                      "Send Message"
+                    )}
+                  </Button>
+                </form>
+              </Form>
             </div>
           </div>
         </div>
       </section>
     </main>
-  )
+  );
 }
-

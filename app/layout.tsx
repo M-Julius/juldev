@@ -10,7 +10,7 @@ const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: "Code with Jul",
-  description: "Personal website of juldev, a mobile engineer.",
+  description: "Personal website of juldev, a mobile developer.",
 }
 
 export default function RootLayout({

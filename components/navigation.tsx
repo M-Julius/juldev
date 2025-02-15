@@ -28,7 +28,7 @@ export default function Navigation() {
         <Link href="/" className="flex items-center space-x-2">
           <span className="text-muted-foreground">// </span>
           <span className="text-primary">mobile</span>
-          <span className="text-muted-foreground">_engineer</span>
+          <span className="text-muted-foreground">_developer</span>
         </Link>
 
         <nav className="hidden md:flex items-center space-x-8">

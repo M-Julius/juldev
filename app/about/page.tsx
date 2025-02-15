@@ -31,7 +31,7 @@ export default function About() {
 
             <div className="space-y-6 text-muted-foreground">
               <p>
-                As a mobile engineer, I am passionate about creating seamless,
+                As a mobile developer, I am passionate about creating seamless,
                 high-quality applications that enhance user experience.
               </p>
               <p>

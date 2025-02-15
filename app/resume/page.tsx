@@ -40,21 +40,22 @@ const skills = {
 };
 
 const experience = [
-//   {
-//     year: "Oct 2024 - Present",
-//     title: "Senior React Native Engineer",
-//     company: "ABNK (Singapore) Pte Ltd",
+  {
+    year: "Oct 2024 - Present",
+    title: "Senior React Native Engineer",
+    company: "ABNK (Singapore) Pte Ltd",
+    description: ``
 //     description: `• Led ABNK app development for iOS and Android using React Native
 // • Implemented comprehensive unit testing and established CI/CD pipelines on CircleCI for testing, linting, and JavaScript security
 // • Successfully developed product landing page using React.js and Tailwind CSS
 // • Integrated animations with GSAP's ScrollTrigger and implemented gravity-based animations using Matter.js`,
-//   },
+  },
   {
     year: "Mar 2022 - Sep 2024",
     title: "Frontend Developer",
     company: "Rebelworks - Recurtech",
     description: `• Developed JoyBox e-commerce platform using React Native, Redux, Firebase, Branch.io, Moengage, and Sentry
-• Built DBO Salesman App with features like loyalty points and achievement reports
+• Built DBO Salesman App with features like loyalty points and achievement reports, revamped the app with new features and improved the UI/UX.
 • Successfully launched DBO Salesman App on Play Store with 5,000+ downloads
 • Optimized RSPI web app using Next.js and TypeScript, setup white label app for reducing setup time by 40%`,
   },

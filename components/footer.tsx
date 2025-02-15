@@ -10,7 +10,7 @@ export default function Footer() {
           <div className="flex items-center space-x-2">
             <span className="text-muted-foreground">// </span>
             <span className="text-primary">mobile</span>
-            <span className="text-muted-foreground">_engineer</span>
+            <span className="text-muted-foreground">_developer</span>
           </div>
 
           <div className="flex space-x-6">
