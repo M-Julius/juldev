@@ -5,6 +5,7 @@ import Navigation from "@/components/navigation"
 import Footer from "@/components/footer"
 import type React from "react"
 import { Toaster } from "@/components/ui/toaster"
+import PageTransition from "@/components/page-transition"
 
 const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"] })
 
@@ -23,7 +24,9 @@ export default function RootLayout({
       <body className={jetbrainsMono.className}>
         <div className="flex flex-col min-h-screen">
           <Navigation />
-          {children}
+          <PageTransition>
+            {children}
+          </PageTransition>
           <Footer />
           <Toaster />
         </div>
