@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import blurBg from "../assets/local-data-header-blur.webp";
 
 export default function About() {
   return (
@@ -10,17 +11,12 @@ export default function About() {
       <section
         className="min-h-screen py-20 relative"
         style={{
-          backgroundImage: `url('https://res.cloudinary.com/dr4v4km4e/image/upload/v1739555375/IMG_0772_nqehyt.png')`,
+          backgroundImage: `url(${blurBg.src})`,
           backgroundSize: "cover",
-          backgroundPosition: "center",
+          backgroundPosition: "center 30%",
         }}
       >
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          className="absolute inset-0 bg-background/90 backdrop-blur-sm"
-        />
+        <div className="absolute inset-0 bg-background/80 backdrop-blur-sm"></div>
         <div className="container px-4 relative top-10">
           <div className="max-w-3xl mx-auto space-y-12 text-center">
             <motion.div 

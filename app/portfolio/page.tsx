@@ -24,6 +24,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Category, Project, projects, ProjectType } from "@/lib/utils";
 import { techStackMap } from "@/components/icon/icon";
 import { cn } from "@/lib/utils";
+import portfolioBg from "../assets/local-data-header-blur.webp";
 
 const getTechStackIcon = (tech: string) => {
   const icon = techStackMap[tech.toLowerCase()];
@@ -97,8 +98,21 @@ export default function Portfolio() {
 
   return (
     <main className="flex-1">
-      <section className="min-h-screen py-20">
-        <div className="container px-4 mt-10">
+      <section 
+        className="min-h-screen py-20 relative"
+        style={{
+          backgroundImage: `url(${portfolioBg.src})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          className="absolute inset-0 bg-background/80 backdrop-blur-sm"
+        />
+        <div className="container px-4 mt-10 relative">
           <div className="space-y-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -182,13 +196,17 @@ export default function Portfolio() {
                     className="group border border-border rounded-lg overflow-hidden"
                   >
                     <div className="relative aspect-[4.2/2.5]">
-                      <Image
-                        src={project.images[0] || "/placeholder.svg"}
-                        alt={project.title}
-                        fill
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        className="object-cover transition-transform duration-300 group-hover:scale-105"
-                      />
+                      <div className="relative h-full">
+                        <div className="absolute inset-0 bg-secondary animate-pulse" />
+                        <Image
+                          src={project.images[0] || "/placeholder.svg"}
+                          alt={project.title}
+                          fill
+                          priority
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          className="object-cover transition-transform duration-300 group-hover:scale-105"
+                        />
+                      </div>
                       <div className="absolute inset-0 bg-background/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
                         <div className="text-center p-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                           <h3 className="text-lg font-bold text-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
@@ -221,7 +239,7 @@ export default function Portfolio() {
         modal={true}
       >
         <AnimatePresence mode="wait">
-          {selectedProject && (
+          {selectedProject ? (
             <DialogContent
               className={cn(
                 "fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200",
@@ -229,6 +247,12 @@ export default function Portfolio() {
                 "sm:max-w-[600px] w-[95vw] border border-border max-h-[90vh] overflow-y-auto"
               )}
             >
+              <DialogHeader>
+                <DialogTitle className="sr-only">
+                  {selectedProject.title}
+                </DialogTitle>
+              </DialogHeader>
+              
               <motion.div
                 initial={{ opacity: 0, scale: 0.95, y: 20 }}
                 animate={{
@@ -414,7 +438,7 @@ export default function Portfolio() {
                 </div>
               </motion.div>
             </DialogContent>
-          )}
+          ) : null}
         </AnimatePresence>
       </Dialog>
     </main>

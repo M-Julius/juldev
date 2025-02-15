@@ -7,10 +7,10 @@ export default function Footer() {
     <footer className="border-t bg-background/80 backdrop-blur-sm">
       <div className="container px-4 py-8">
         <div className="flex flex-col items-center justify-between space-y-4 md:flex-row md:space-y-0">
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-2 sm:hidden">
             <span className="text-muted-foreground">// </span>
-            <span className="text-primary">mobile</span>
-            <span className="text-muted-foreground">_developer</span>
+            <span className="text-primary">jul</span>
+            <span className="text-muted-foreground">_dev</span>
           </div>
 
           <div className="flex space-x-6">

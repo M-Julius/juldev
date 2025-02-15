@@ -27,8 +27,8 @@ export default function Navigation() {
       <div className="container flex items-center justify-between h-16 px-4">
         <Link href="/" className="flex items-center space-x-2">
           <span className="text-muted-foreground">// </span>
-          <span className="text-primary">mobile</span>
-          <span className="text-muted-foreground">_developer</span>
+          <span className="text-primary">jul</span>
+          <span className="text-muted-foreground">_dev</span>
         </Link>
 
         <nav className="hidden md:flex items-center space-x-8">
@@ -50,9 +50,9 @@ export default function Navigation() {
                 {isOpen ? (
                   <motion.div
                     key="close"
-                    initial={{ rotate: -90, opacity: 0 }}
-                    animate={{ rotate: 0, opacity: 1 }}
-                    exit={{ rotate: 90, opacity: 0 }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
                     transition={{ duration: 0.2 }}
                   >
                     <X className="h-6 w-6" />
@@ -60,9 +60,9 @@ export default function Navigation() {
                 ) : (
                   <motion.div
                     key="menu"
-                    initial={{ rotate: 90, opacity: 0 }}
-                    animate={{ rotate: 0, opacity: 1 }}
-                    exit={{ rotate: -90, opacity: 0 }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
                     transition={{ duration: 0.2 }}
                   >
                     <Menu className="h-6 w-6" />
@@ -74,24 +74,16 @@ export default function Navigation() {
           </SheetTrigger>
           <SheetContent side="right" className="w-[300px] sm:w-[400px]">
             <nav className="flex flex-col space-y-4 mt-8">
-              {navItems.map((item, index) => (
+              {navItems.map((item) => (
                 <motion.div
                   key={item.href}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ 
-                    duration: 0.3,
-                    delay: index * 0.1,
-                    ease: "easeOut"
-                  }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.2 }}
                 >
                   <Link
                     href={item.href}
-                    className={`text-lg ${
-                      pathname === item.href 
-                        ? "text-primary font-bold" 
-                        : "text-muted-foreground"
-                    }`}
+                    className={`text-lg ${pathname === item.href ? "text-primary font-bold" : "text-muted-foreground"}`}
                     onClick={() => setIsOpen(false)}
                   >
                     {item.label}

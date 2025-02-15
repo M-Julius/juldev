@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { techStackMap } from "@/components/icon/icon";
 import { motion } from "framer-motion";
+import resumeBg from "../assets/local-data-header-blur.webp";
 
 const skills = {
   technical: [
@@ -259,8 +260,21 @@ const CertificateItem = ({ cert, index }: { cert: typeof certificates[0], index:
 export default function Resume() {
   return (
     <main className="flex-1">
-      <section className="min-h-screen py-20">
-        <div className="container px-4 mt-10">
+      <section 
+        className="min-h-screen py-20 relative"
+        style={{
+          backgroundImage: `url(${resumeBg.src})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          className="absolute inset-0 bg-background/80 backdrop-blur-sm"
+        />
+        <div className="container px-4 mt-10 relative">
           <div className="space-y-12">
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
