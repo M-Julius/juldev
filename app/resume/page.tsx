@@ -278,19 +278,33 @@ export default function Resume() {
 
   return (
     <main className="flex-1">
-      <section 
-        className="min-h-screen py-20 relative"
-        style={{
-          backgroundImage: `url(${resumeBg.src})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
+      <section
+        className="min-h-screen py-20 relative bg-background"
       >
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
-          className="absolute inset-0 bg-background/80 backdrop-blur-sm"
+          transition={{ duration: 0.3 }}
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `url(${resumeBg.src})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            willChange: "opacity",
+            backfaceVisibility: "hidden",
+            WebkitBackfaceVisibility: "hidden"
+          }}
+        />
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="absolute inset-0 bg-background/80 backdrop-blur-[2px] sm:backdrop-blur-sm"
+          style={{
+            willChange: "opacity",
+            backfaceVisibility: "hidden",
+            WebkitBackfaceVisibility: "hidden"
+          }}
         />
         <div className="container px-4 mt-10 relative">
           <div className="space-y-12">

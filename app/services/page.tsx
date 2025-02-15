@@ -69,14 +69,33 @@ export default function Services() {
   return (
     <main className="flex-1">
       <section
-        className="min-h-screen py-20 relative"
-        style={{
-          backgroundImage: `url(${servicesBg.src})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center 5%",
-        }}
+        className="min-h-screen py-20 relative bg-background"
       >
-        <div className="absolute inset-0 bg-background/80 backdrop-blur-sm"></div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3 }}
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `url(${servicesBg.src})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center 5%",
+            willChange: "opacity",
+            backfaceVisibility: "hidden",
+            WebkitBackfaceVisibility: "hidden"
+          }}
+        />
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="absolute inset-0 bg-background/80 backdrop-blur-[2px] sm:backdrop-blur-sm"
+          style={{
+            willChange: "opacity",
+            backfaceVisibility: "hidden",
+            WebkitBackfaceVisibility: "hidden"
+          }}
+        />
         <div className="container px-4 mt-10 relative">
           <motion.div
             variants={containerVariants}

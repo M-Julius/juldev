@@ -10,24 +10,48 @@ export default function About() {
   return (
     <main className="flex-1">
       <section
-        className="min-h-screen py-20 relative"
-        style={{
-          backgroundImage: `url(${blurBg.src})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center 30%",
-        }}
+        className="min-h-screen py-20 relative bg-background"
       >
-        <div className="absolute inset-0 bg-background/80 backdrop-blur-sm"></div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ 
+            duration: 0.3
+          }}
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `url(${blurBg.src})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center 30%",
+            willChange: "opacity",
+            backfaceVisibility: "hidden",
+            WebkitBackfaceVisibility: "hidden"
+          }}
+        />
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ 
+            duration: 0.5,
+            ease: "easeOut"
+          }}
+          className="absolute inset-0 bg-background/80 backdrop-blur-[2px] sm:backdrop-blur-sm"
+          style={{
+            willChange: "opacity",
+            backfaceVisibility: "hidden",
+            WebkitBackfaceVisibility: "hidden"
+          }}
+        />
         <div className="container px-4 relative top-10">
           <div className="max-w-3xl mx-auto space-y-12 text-center">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
               className="space-y-6"
             >
               <div className="flex items-center justify-center space-x-4 text-4xl md:text-6xl">
-                <motion.span 
+                <motion.span
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.5, delay: 0.2 }}
@@ -35,7 +59,7 @@ export default function About() {
                 >
                   {"{"}&quot;
                 </motion.span>
-                <motion.h1 
+                <motion.h1
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.3 }}
@@ -43,7 +67,7 @@ export default function About() {
                 >
                   _about_me
                 </motion.h1>
-                <motion.span 
+                <motion.span
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.5, delay: 0.2 }}
@@ -53,19 +77,20 @@ export default function About() {
                 </motion.span>
               </div>
 
-              <motion.p 
+              <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.4 }}
                 className="text-xl text-primary"
               >
                 ...I have over 5 years of experience in mobile development,
-                specializing in React Native and also have experience in Flutter too.
-                Additionally, I have experience in web development using React, Next.js, and Laravel.
+                specializing in React Native and also have experience in Flutter
+                too. Additionally, I have experience in web development using
+                React, Next.js, and Laravel.
               </motion.p>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.5 }}
@@ -89,13 +114,13 @@ export default function About() {
               </motion.p>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ 
-                duration: 0.5, 
+              transition={{
+                duration: 0.5,
                 delay: 0.8,
-                ease: [0.4, 0, 0.2, 1]
+                ease: [0.4, 0, 0.2, 1],
               }}
               className="pt-6"
             >
