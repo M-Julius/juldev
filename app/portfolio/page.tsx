@@ -258,7 +258,7 @@ export default function Portfolio() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-background/30 backdrop-blur-sm z-40"
+              className="fixed inset-0 bg-background/10 backdrop-blur-sm z-40"
             />
           )}
         </AnimatePresence>
@@ -266,18 +266,12 @@ export default function Portfolio() {
           {selectedProject ? (
             <DialogContent
               className={cn(
-                "fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background/95 p-6 shadow-lg duration-200",
+                "fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background/90 p-6 shadow-lg duration-200",
                 "rounded-lg backdrop-blur-md",
                 "sm:max-w-[600px] w-[95vw] border border-border max-h-[90vh] overflow-y-auto",
                 "bg-background/80 backdrop-blur-sm"
               )}
-            >
-              <DialogHeader>
-                <DialogTitle className="sr-only">
-                  {selectedProject.title}
-                </DialogTitle>
-              </DialogHeader>
-              
+            > 
               <motion.div
                 initial={{ opacity: 0, scale: 0.95, y: 20 }}
                 animate={{
@@ -349,18 +343,27 @@ export default function Portfolio() {
                         }}
                         className="absolute inset-0"
                       >
-                        <Image
-                          src={
-                            selectedProject.images[currentImageIndex] ||
-                            "/placeholder.svg"
-                          }
-                          alt={`${selectedProject.title} preview ${
-                            currentImageIndex + 1
-                          }`}
-                          fill
-                          sizes="(max-width: 600px) 95vw, 600px"
-                          className="object-cover rounded-md"
-                        />
+                        <div className="relative h-full">
+                          <div className="absolute inset-0 bg-secondary animate-pulse rounded-md border border-border" />
+                          <Image
+                            src={
+                              selectedProject.images[currentImageIndex] ||
+                              "/placeholder.svg"
+                            }
+                            alt={`${selectedProject.title} preview ${
+                              currentImageIndex + 1
+                            }`}
+                            fill
+                            priority
+                            sizes="(max-width: 600px) 95vw, 600px"
+                            className="object-cover rounded-md transition-opacity duration-300 opacity-0"
+                            onLoad={(e) => {
+                              const target = e.target as HTMLImageElement;
+                              target.classList.remove('opacity-0');
+                              target.classList.add('opacity-100');
+                            }}
+                          />
+                        </div>
                       </motion.div>
                     </AnimatePresence>
                     {selectedProject.images.length > 1 && (
@@ -447,19 +450,33 @@ export default function Portfolio() {
                       </div>
                     </div>
                   </motion.div>
-                  {selectedProject.link && (
-                    <Button variant="outline" asChild className="w-full">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, delay: 0.5 }}
+                  >
+                    <Button 
+                      variant="outline" 
+                      asChild 
+                      className="w-full group"
+                    >
                       <a
                         href={selectedProject.link}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center justify-center"
                       >
-                        {getIcon(selectedProject.type)}
-                        <span className="ml-2">View Project</span>
+                        <motion.span
+                          className="flex items-center"
+                          whileHover={{ x: 5 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          {getIcon(selectedProject.type)}
+                          <span className="ml-2">View Project</span>
+                        </motion.span>
                       </a>
                     </Button>
-                  )}
+                  </motion.div>
                 </div>
               </motion.div>
             </DialogContent>
