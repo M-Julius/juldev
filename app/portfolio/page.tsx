@@ -100,7 +100,7 @@ export default function Portfolio() {
       <section className="min-h-screen py-20">
         <div className="container px-4 mt-10">
           <div className="space-y-12">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
@@ -116,7 +116,7 @@ export default function Portfolio() {
               </p>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
@@ -127,18 +127,18 @@ export default function Portfolio() {
                   key={category}
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  transition={{ 
+                  transition={{
                     duration: 0.4,
                     delay: index * 0.1,
-                    ease: [0.4, 0, 0.2, 1] // Smooth easing function
+                    ease: [0.4, 0, 0.2, 1], // Smooth easing function
                   }}
-                  whileHover={{ 
+                  whileHover={{
                     scale: 1.05,
-                    transition: { duration: 0.2 }
+                    transition: { duration: 0.2 },
                   }}
-                  whileTap={{ 
+                  whileTap={{
                     scale: 0.95,
-                    transition: { duration: 0.1 }
+                    transition: { duration: 0.1 },
                   }}
                 >
                   <Button
@@ -152,7 +152,7 @@ export default function Portfolio() {
               ))}
             </motion.div>
 
-            <motion.div 
+            <motion.div
               layout
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
             >
@@ -162,22 +162,22 @@ export default function Portfolio() {
                     key={project.id}
                     layout
                     initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ 
-                      opacity: 1, 
+                    animate={{
+                      opacity: 1,
                       scale: 1,
                       transition: {
                         duration: 0.4,
                         delay: index * 0.1,
-                        ease: [0.4, 0, 0.2, 1]
-                      }
+                        ease: [0.4, 0, 0.2, 1],
+                      },
                     }}
-                    exit={{ 
-                      opacity: 0, 
+                    exit={{
+                      opacity: 0,
                       scale: 0.9,
                       transition: {
                         duration: 0.3,
-                        ease: [0.4, 0, 1, 1]
-                      }
+                        ease: [0.4, 0, 1, 1],
+                      },
                     }}
                     className="group border border-border rounded-lg overflow-hidden"
                   >
@@ -222,7 +222,7 @@ export default function Portfolio() {
       >
         <AnimatePresence mode="wait">
           {selectedProject && (
-            <DialogContent 
+            <DialogContent
               className={cn(
                 "fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200",
                 "sm:rounded-lg",
@@ -231,23 +231,23 @@ export default function Portfolio() {
             >
               <motion.div
                 initial={{ opacity: 0, scale: 0.95, y: 20 }}
-                animate={{ 
-                  opacity: 1, 
-                  scale: 1, 
+                animate={{
+                  opacity: 1,
+                  scale: 1,
                   y: 0,
                   transition: {
                     duration: 0.3,
-                    ease: [0.4, 0, 0.2, 1]
-                  }
+                    ease: [0.4, 0, 0.2, 1],
+                  },
                 }}
-                exit={{ 
-                  opacity: 0, 
-                  scale: 0.95, 
+                exit={{
+                  opacity: 0,
+                  scale: 0.95,
                   y: 20,
                   transition: {
                     duration: 0.2,
-                    ease: [0.4, 0, 1, 1]
-                  }
+                    ease: [0.4, 0, 1, 1],
+                  },
                 }}
               >
                 <DialogHeader>
@@ -257,13 +257,15 @@ export default function Portfolio() {
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.2, delay: 0.1 }}
                   >
-                    <DialogTitle style={{ marginBottom: "5px" }}>{selectedProject.title}</DialogTitle>
+                    <DialogTitle style={{ marginBottom: "5px" }}>
+                      {selectedProject.title}
+                    </DialogTitle>
                     <DialogDescription>
                       {selectedProject.category.join(", ")}
                     </DialogDescription>
                   </motion.div>
                 </DialogHeader>
-                
+
                 <motion.button
                   className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground"
                   whileHover={{ scale: 1.1 }}
@@ -280,27 +282,32 @@ export default function Portfolio() {
                       <motion.div
                         key={currentImageIndex}
                         initial={{ opacity: 0, x: 100 }}
-                        animate={{ 
-                          opacity: 1, 
+                        animate={{
+                          opacity: 1,
                           x: 0,
                           transition: {
                             duration: 0.3,
-                            ease: [0.4, 0, 0.2, 1]
-                          }
+                            ease: [0.4, 0, 0.2, 1],
+                          },
                         }}
-                        exit={{ 
-                          opacity: 0, 
+                        exit={{
+                          opacity: 0,
                           x: -100,
                           transition: {
                             duration: 0.2,
-                            ease: [0.4, 0, 1, 1]
-                          }
+                            ease: [0.4, 0, 1, 1],
+                          },
                         }}
                         className="absolute inset-0"
                       >
                         <Image
-                          src={selectedProject.images[currentImageIndex] || "/placeholder.svg"}
-                          alt={`${selectedProject.title} preview ${currentImageIndex + 1}`}
+                          src={
+                            selectedProject.images[currentImageIndex] ||
+                            "/placeholder.svg"
+                          }
+                          alt={`${selectedProject.title} preview ${
+                            currentImageIndex + 1
+                          }`}
                           fill
                           sizes="(max-width: 600px) 95vw, 600px"
                           className="object-cover rounded-md"
@@ -328,25 +335,25 @@ export default function Portfolio() {
                       </>
                     )}
                   </div>
-                  
+
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
-                    animate={{ 
-                      opacity: 1, 
+                    animate={{
+                      opacity: 1,
                       y: 0,
                       transition: {
                         duration: 0.3,
                         delay: 0.2,
-                        ease: [0.4, 0, 0.2, 1]
-                      }
+                        ease: [0.4, 0, 0.2, 1],
+                      },
                     }}
-                    exit={{ 
-                      opacity: 0, 
+                    exit={{
+                      opacity: 0,
                       y: 20,
                       transition: {
                         duration: 0.2,
-                        ease: [0.4, 0, 1, 1]
-                      }
+                        ease: [0.4, 0, 1, 1],
+                      },
                     }}
                   >
                     <div className="flex items-center">
@@ -359,28 +366,30 @@ export default function Portfolio() {
                       {selectedProject.description}
                     </p>
                     <div className="space-y-2 mt-4">
-                      <h3 className="text-sm font-medium">Technologies Used:</h3>
+                      <h3 className="text-sm font-medium">
+                        Technologies Used:
+                      </h3>
                       <div className="flex flex-wrap gap-2">
                         {selectedProject.techStack.map((tech, index) => (
                           <motion.div
                             key={tech}
                             initial={{ opacity: 0, scale: 0.8 }}
-                            animate={{ 
-                              opacity: 1, 
+                            animate={{
+                              opacity: 1,
                               scale: 1,
                               transition: {
                                 duration: 0.3,
                                 delay: 0.3 + index * 0.1,
-                                ease: [0.4, 0, 0.2, 1]
-                              }
+                                ease: [0.4, 0, 0.2, 1],
+                              },
                             }}
-                            exit={{ 
-                              opacity: 0, 
+                            exit={{
+                              opacity: 0,
                               scale: 0.8,
                               transition: {
                                 duration: 0.2,
-                                ease: [0.4, 0, 1, 1]
-                              }
+                                ease: [0.4, 0, 1, 1],
+                              },
                             }}
                           >
                             {getTechStackIcon(tech)}
@@ -389,6 +398,19 @@ export default function Portfolio() {
                       </div>
                     </div>
                   </motion.div>
+                  {selectedProject.link && (
+                    <Button variant="outline" asChild className="w-full">
+                      <a
+                        href={selectedProject.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-center"
+                      >
+                        {getIcon(selectedProject.type)}
+                        <span className="ml-2">View Project</span>
+                      </a>
+                    </Button>
+                  )}
                 </div>
               </motion.div>
             </DialogContent>
