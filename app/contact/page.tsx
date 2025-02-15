@@ -19,6 +19,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { formSchema } from "./schema";
+import { motion } from "framer-motion";
 
 const contactInfo = {
   email: "mjulius.dev@gmail.com".split("").map((char, i) => ({ char, id: i })),
@@ -81,172 +82,177 @@ export default function Contact() {
       <section className="min-h-screen py-20 md:pt-20">
         <div className="container px-4 mt-10">
           <div className="space-y-12">
-            <div className="text-center space-y-4">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="text-center space-y-4"
+            >
               <div className="flex items-center justify-center space-x-4 text-4xl md:text-6xl">
-                <span className="text-muted-foreground">{"{"}&quot;</span>
-                <h1 className="text-primary font-bold">_contact</h1>
-                <span className="text-muted-foreground">&quot;{"}"}</span>
+                <motion.span 
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                  className="text-muted-foreground"
+                >
+                  {"{"}&quot;
+                </motion.span>
+                <motion.h1 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                  className="text-primary font-bold"
+                >
+                  _contact
+                </motion.h1>
+                <motion.span 
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                  className="text-muted-foreground"
+                >
+                  &quot;{"}"}
+                </motion.span>
               </div>
-              <p className="text-muted-foreground">Get in touch with me</p>
-            </div>
+              <motion.p 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+                className="text-muted-foreground"
+              >
+                Get in touch with me
+              </motion.p>
+            </motion.div>
 
             <div className="grid gap-12 md:grid-cols-2">
-              <div className="space-y-8">
+              <motion.div 
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="space-y-8"
+              >
                 <div className="space-y-6">
-                  <h2 className="text-2xl font-bold">Contact Information</h2>
+                  <motion.h2 
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.3 }}
+                    className="text-2xl font-bold"
+                  >
+                    Contact Information
+                  </motion.h2>
                   <div className="space-y-4">
-                    <div className="w-full flex items-center space-x-3 hover:text-primary transition-colors">
-                      <Mail className="text-primary flex-shrink-0" />
-                      <span className="text-muted-foreground flex">
-                        {contactInfo.email.map(({ char, id }) => (
-                          <span
-                            key={id}
-                            className="inline-block"
-                            style={{
-                              ["--char" as string]: `"${char}"`,
-                              content: "var(--char)",
-                            }}
-                            aria-hidden="true"
-                          >
-                            {char}
-                          </span>
-                        ))}
-                      </span>
-                    </div>
-
-                    <div className="w-full flex items-center space-x-3 hover:text-primary transition-colors">
-                      <Phone className="text-primary flex-shrink-0" />
-                      <span className="text-muted-foreground flex">
-                        {contactInfo.phone.map(({ char, id }) => (
-                          <span
-                            key={id}
-                            className="inline-block"
-                            style={{
-                              ["--char" as string]: `"${char}"`,
-                              content: "var(--char)",
-                            }}
-                            aria-hidden="true"
-                          >
-                            {char}
-                          </span>
-                        ))}
-                      </span>
-                    </div>
-
-                    <div className="flex items-center space-x-3">
-                      <MapPin className="text-primary flex-shrink-0" />
-                      <span className="text-muted-foreground flex">
-                        {contactInfo.location.map(({ char, id }) => (
-                          <span
-                            key={id}
-                            className="inline-block"
-                            style={{
-                              ["--char" as string]: `"${char}"`,
-                              content: "var(--char)",
-                            }}
-                            aria-hidden="true"
-                          >
-                            {char}
-                          </span>
-                        ))}
-                      </span>
-                    </div>
+                    {[
+                      { icon: <Mail className="text-primary flex-shrink-0" />, data: contactInfo.email },
+                      { icon: <Phone className="text-primary flex-shrink-0" />, data: contactInfo.phone },
+                      { icon: <MapPin className="text-primary flex-shrink-0" />, data: contactInfo.location }
+                    ].map((item, index) => (
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
+                        whileHover={{ x: 5 }}
+                        className="w-full flex items-center space-x-3 hover:text-primary transition-colors"
+                      >
+                        {item.icon}
+                        <span className="text-muted-foreground flex">
+                          {item.data.map(({ char, id }) => (
+                            <motion.span
+                              key={id}
+                              initial={{ opacity: 0 }}
+                              animate={{ opacity: 1 }}
+                              transition={{ duration: 0.3, delay: 0.5 + id * 0.02 }}
+                              className="inline-block"
+                              style={{
+                                ["--char" as string]: `"${char}"`,
+                                content: "var(--char)",
+                              }}
+                              aria-hidden="true"
+                            >
+                              {char}
+                            </motion.span>
+                          ))}
+                        </span>
+                      </motion.div>
+                    ))}
                   </div>
                 </div>
-              </div>
+              </motion.div>
 
-              <Form {...form}>
-                <form
-                  onSubmit={form.handleSubmit(onSubmit)}
-                  className="space-y-6"
-                >
-                  <div className="space-y-4">
-                    <FormField
-                      control={form.control}
-                      name="name"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Name</FormLabel>
-                          <FormControl>
-                            <Input
-                              placeholder="Enter your name"
-                              className="bg-secondary/50"
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
+              <motion.div
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+              >
+                <Form {...form}>
+                  <form
+                    onSubmit={form.handleSubmit(onSubmit)}
+                    className="space-y-6"
+                  >
+                    <div className="space-y-4">
+                      {[
+                        { name: "name", label: "Name", type: "text" },
+                        { name: "email", label: "Email", type: "email" },
+                        { name: "subject", label: "Subject", type: "text" },
+                        { name: "message", label: "Message", type: "textarea" }
+                      ].map((field, index) => (
+                        <motion.div
+                          key={field.name}
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
+                        >
+                          <FormField
+                            control={form.control}
+                            name={field.name as keyof z.infer<typeof formSchema>}
+                            render={({ field: fieldProps }) => (
+                              <FormItem>
+                                <FormLabel>{field.label}</FormLabel>
+                                <FormControl>
+                                  {field.type === "textarea" ? (
+                                    <Textarea
+                                      placeholder={`Enter your ${field.name}`}
+                                      className="min-h-[150px] bg-secondary/50"
+                                      {...fieldProps}
+                                    />
+                                  ) : (
+                                    <Input
+                                      type={field.type}
+                                      placeholder={`Enter your ${field.name}`}
+                                      className="bg-secondary/50"
+                                      {...fieldProps}
+                                    />
+                                  )}
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                        </motion.div>
+                      ))}
+                    </div>
 
-                    <FormField
-                      control={form.control}
-                      name="email"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Email</FormLabel>
-                          <FormControl>
-                            <Input
-                              type="email"
-                              placeholder="Enter your email"
-                              className="bg-secondary/50"
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-
-                    <FormField
-                      control={form.control}
-                      name="subject"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Subject</FormLabel>
-                          <FormControl>
-                            <Input
-                              placeholder="Enter subject"
-                              className="bg-secondary/50"
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-
-                    <FormField
-                      control={form.control}
-                      name="message"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Message</FormLabel>
-                          <FormControl>
-                            <Textarea
-                              placeholder="Enter your message"
-                              className="min-h-[150px] bg-secondary/50"
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  </div>
-
-                  <Button type="submit" className="w-full" disabled={isLoading}>
-                    {isLoading ? (
-                      <>
-                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                        Sending...
-                      </>
-                    ) : (
-                      "Send Message"
-                    )}
-                  </Button>
-                </form>
-              </Form>
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: 0.9 }}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <Button type="submit" className="w-full" disabled={isLoading}>
+                        {isLoading ? (
+                          <>
+                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                            Sending...
+                          </>
+                        ) : (
+                          "Send Message"
+                        )}
+                      </Button>
+                    </motion.div>
+                  </form>
+                </Form>
+              </motion.div>
             </div>
           </div>
         </div>

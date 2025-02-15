@@ -1,5 +1,8 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { techStackMap } from "@/components/icon/icon";
+import { motion } from "framer-motion";
 
 const skills = {
   technical: [
@@ -217,8 +220,13 @@ const certificates = [
   },
 ];
 
-const CertificateItem = ({ cert }: { cert: typeof certificates[0] }) => (
-  <div className="border-b border-border py-2">
+const CertificateItem = ({ cert, index }: { cert: typeof certificates[0], index: number }) => (
+  <motion.div 
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.3, delay: index * 0.1 }}
+    className="border-b border-border py-2"
+  >
     <div className="flex justify-between items-start gap-4">
       <div className="flex gap-4">
         <div className="w-12 h-12 flex-shrink-0">
@@ -229,21 +237,23 @@ const CertificateItem = ({ cert }: { cert: typeof certificates[0] }) => (
           />
         </div>
         <div className="space-y-1">
-          <a 
+          <motion.a 
             href={cert.link} 
             target="_blank" 
             rel="noopener noreferrer" 
-            className="font-medium hover:text-primary transition-colors"
+            className="font-medium hover:text-primary transition-colors block"
+            whileHover={{ x: 5 }}
+            transition={{ duration: 0.2 }}
           >
             {cert.name}
-          </a>
+          </motion.a>
           <div className="text-sm text-muted-foreground">{cert.issuer}</div>
           <div className="text-xs text-muted-foreground">{cert.platform}</div>
         </div>
       </div>
       <span className="text-sm text-primary whitespace-nowrap">{cert.date}</span>
     </div>
-  </div>
+  </motion.div>
 )
 
 export default function Resume() {
@@ -252,109 +262,200 @@ export default function Resume() {
       <section className="min-h-screen py-20">
         <div className="container px-4 mt-10">
           <div className="space-y-12">
-            <div className="text-center space-y-4">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="text-center space-y-4"
+            >
               <div className="flex items-center justify-center space-x-4 text-4xl md:text-6xl">
                 <span className="text-muted-foreground">{"{"}&quot;</span>
                 <h1 className="text-primary font-bold">_resume</h1>
                 <span className="text-muted-foreground">&quot;{"}"}</span>
               </div>
-              <div className="pt-4">
+              <motion.div 
+                className="pt-4"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.3 }}
+              >
                 <Button variant="default">Download CV</Button>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
 
             <div className="grid gap-12 md:grid-cols-2">
               <div className="space-y-6">
-                <h2 className="text-2xl font-bold">Experience</h2>
+                <motion.h2 
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5 }}
+                  className="text-2xl font-bold"
+                >
+                  Experience
+                </motion.h2>
                 <div className="space-y-8">
                   {experience.map((item, index) => (
-                    <div key={index} className="relative pl-6 border-l">
-                      <div className="absolute w-3 h-3 bg-primary rounded-full -left-[7px] top-2" />
+                    <motion.div 
+                      key={index} 
+                      initial={{ opacity: 0, x: -50 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      className="relative pl-6 border-l"
+                    >
+                      <motion.div 
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ duration: 0.3, delay: 0.2 + index * 0.1 }}
+                        className="absolute w-3 h-3 bg-primary rounded-full -left-[7px] top-2" 
+                      />
                       <div className="space-y-2">
-                        <span className="text-sm text-primary">
-                          {item.year}
-                        </span>
+                        <span className="text-sm text-primary">{item.year}</span>
                         <h3 className="text-lg font-bold">{item.title}</h3>
                         <p className="text-muted-foreground">{item.company}</p>
                         <div className="text-sm text-muted-foreground whitespace-pre-line">
                           {item.description}
                         </div>
                       </div>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
 
                 <div className="pt-8">
-                  <h2 className="text-2xl font-bold mb-6">Education</h2>
+                  <motion.h2 
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="text-2xl font-bold mb-6"
+                  >
+                    Education
+                  </motion.h2>
                   <div className="space-y-8">
                     {education.map((item, index) => (
-                      <div key={index} className="relative pl-6 border-l">
-                        <div className="absolute w-3 h-3 bg-primary rounded-full -left-[7px] top-2" />
+                      <motion.div 
+                        key={index} 
+                        initial={{ opacity: 0, x: -50 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.5, delay: index * 0.1 }}
+                        className="relative pl-6 border-l"
+                      >
+                        <motion.div 
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          transition={{ duration: 0.3, delay: 0.2 + index * 0.1 }}
+                          className="absolute w-3 h-3 bg-primary rounded-full -left-[7px] top-2" 
+                        />
                         <div className="space-y-2">
-                          <span className="text-sm text-primary">
-                            {item.year}
-                          </span>
+                          <span className="text-sm text-primary">{item.year}</span>
                           <h3 className="text-lg font-bold">{item.title}</h3>
-                          <p className="text-muted-foreground">
-                            {item.institution}
-                          </p>
+                          <p className="text-muted-foreground">{item.institution}</p>
                           <div className="text-sm text-muted-foreground whitespace-pre-line">
                             {item.description}
                           </div>
                         </div>
-                      </div>
+                      </motion.div>
                     ))}
                   </div>
                 </div>
               </div>
               <div className="space-y-6">
-                <h2 className="text-2xl font-bold">Skills</h2>
+                <motion.h2 
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5 }}
+                  className="text-2xl font-bold"
+                >
+                  Skills
+                </motion.h2>
                 
                 <div className="space-y-4">
                   <div>
-                    <h3 className="font-medium mb-2">Technical Skills</h3>
+                    <motion.h3 
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 0.2 }}
+                      className="font-medium mb-2"
+                    >
+                      Technical Skills
+                    </motion.h3>
                     <div className="flex flex-wrap gap-2">
                       {skills.technical.map((skill, index) => (
-                        <span 
-                          key={index} 
+                        <motion.span 
+                          key={index}
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ duration: 0.3, delay: index * 0.05 }}
+                          whileHover={{ scale: 1.1 }}
                           className="bg-secondary px-3 py-1 rounded-full text-sm flex items-center gap-2"
                         >
                           {techStackMap[skill.icon]}
-                          {/* <span>{skill.name}</span> */}
-                        </span>
+                        </motion.span>
                       ))}
                     </div>
                   </div>
 
                   <div>
-                    <h3 className="font-medium mb-2">Soft Skills</h3>
+                    <motion.h3 
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 0.3 }}
+                      className="font-medium mb-2"
+                    >
+                      Soft Skills
+                    </motion.h3>
                     <div className="flex flex-wrap gap-2">
                       {skills.soft.map((skill, index) => (
-                        <span key={index} className="bg-secondary px-3 py-1 rounded-full text-sm">
+                        <motion.span 
+                          key={index}
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ duration: 0.3, delay: 0.4 + index * 0.05 }}
+                          whileHover={{ scale: 1.1 }}
+                          className="bg-secondary px-3 py-1 rounded-full text-sm"
+                        >
                           {skill}
-                        </span>
+                        </motion.span>
                       ))}
                     </div>
                   </div>
 
                   <div>
-                    <h3 className="font-medium mb-2">Languages</h3>
+                    <motion.h3 
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 0.4 }}
+                      className="font-medium mb-2"
+                    >
+                      Languages
+                    </motion.h3>
                     <div className="space-y-2">
                       {skills.languages.map((lang, index) => (
-                        <div key={index} className="flex justify-between items-center">
+                        <motion.div 
+                          key={index}
+                          initial={{ opacity: 0, x: 20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.3, delay: 0.5 + index * 0.1 }}
+                          className="flex justify-between items-center"
+                        >
                           <span>{lang.language}</span>
                           <span className="text-primary text-sm">{lang.level}</span>
-                        </div>
+                        </motion.div>
                       ))}
                     </div>
                   </div>
                 </div>
 
                 <div className="pt-8">
-                  <h2 className="text-2xl font-bold mb-6">Certifications</h2>
+                  <motion.h2 
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="text-2xl font-bold mb-6"
+                  >
+                    Certifications
+                  </motion.h2>
                   <div className="space-y-4">
                     {certificates.map((cert, index) => (
-                      <CertificateItem key={index} cert={cert} />
+                      <CertificateItem key={index} cert={cert} index={index} />
                     ))}
                   </div>
                 </div>
