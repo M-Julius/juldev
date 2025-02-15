@@ -9,7 +9,7 @@ export default function Hero() {
         backgroundPosition: "center",
       }}
     >
-      <div className="absolute inset-0 bg-background/80 backdrop-blur-sm"></div>
+      <div className="absolute inset-0 bg-background/90 backdrop-blur-sm"></div>
 
       <div className="container px-4 relative">
         <div className="space-y-8 text-center">

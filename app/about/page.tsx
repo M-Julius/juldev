@@ -12,8 +12,8 @@ export default function About() {
           backgroundPosition: "center",
         }}
       >
-        <div className="absolute inset-0 bg-background/80 backdrop-blur-sm"></div>
-        <div className="container px-4 relative top-10">
+      <div className="absolute inset-0 bg-background/90 backdrop-blur-sm"></div>
+      <div className="container px-4 relative top-10">
           <div className="max-w-3xl mx-auto space-y-12 text-center">
             <div className="space-y-6">
               <div className="flex items-center justify-center space-x-4 text-4xl md:text-6xl">

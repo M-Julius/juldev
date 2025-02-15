@@ -4,6 +4,7 @@ import "./globals.css"
 import Navigation from "@/components/navigation"
 import Footer from "@/components/footer"
 import type React from "react"
+import { Toaster } from "@/components/ui/toaster"
 
 const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"] })
 
@@ -24,6 +25,7 @@ export default function RootLayout({
           <Navigation />
           {children}
           <Footer />
+          <Toaster />
         </div>
       </body>
     </html>
