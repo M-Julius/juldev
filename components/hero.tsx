@@ -1,23 +1,41 @@
 "use client";
 
 import { motion } from "framer-motion";
-
+import heroBg from "../app/assets/local-data-header-blur.webp";
 /* eslint-disable react/jsx-no-comment-textnodes */
 export default function Hero() {
   return (
     <section
-      className="min-h-screen flex items-center justify-center relative overflow-hidden"
-      style={{
-        backgroundImage: `url('https://res.cloudinary.com/dr4v4km4e/image/upload/v1739555375/IMG_0772_nqehyt.png')`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
+      className="min-h-screen flex items-center justify-center relative overflow-hidden bg-background"
     >
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.3 }}
+        className="absolute inset-0"
+        style={{
+          // backgroundImage: `url(${heroBg.src})`,
+          backgroundImage: `url('https://res.cloudinary.com/dr4v4km4e/image/upload/q_59:420/v1739555375/IMG_0772_nqehyt.webp')`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          willChange: "opacity",
+          backfaceVisibility: "hidden",
+          WebkitBackfaceVisibility: "hidden"
+        }}
+      />
       <motion.div 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
-        className="absolute inset-0 bg-background/90 backdrop-blur-sm"
+        transition={{ 
+          duration: 0.5,
+          ease: "easeOut"
+        }}
+        className="absolute inset-0 bg-background/90 backdrop-blur-[2px] sm:backdrop-blur-sm"
+        style={{
+          willChange: "opacity",
+          backfaceVisibility: "hidden",
+          WebkitBackfaceVisibility: "hidden"
+        }}
       />
 
       <div className="container px-4 relative">
@@ -26,7 +44,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="text-muted-foreground"
+            className="text-muted-foreground italic"
           >
             // HI, I&apos;M M. JULIUS SAPUTRA, A...
           </motion.p>
