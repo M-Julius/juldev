@@ -18,13 +18,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-
-const formSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.string().email("Please enter a valid email address"),
-  subject: z.string().min(3, "Subject must be at least 3 characters"),
-  message: z.string().min(10, "Message must be at least 10 characters"),
-});
+import { formSchema } from "./schema";
 
 const contactInfo = {
   email: "mjulius.dev@gmail.com".split("").map((char, i) => ({ char, id: i })),
@@ -71,6 +65,7 @@ export default function Contact() {
         form.reset();
       }
     } catch (error) {
+      console.error(error);
       toast({
         title: "Error!",
         description: "Failed to send message. Please try again.",
@@ -108,7 +103,7 @@ export default function Contact() {
                             key={id}
                             className="inline-block"
                             style={{
-                              ["--char" as any]: `"${char}"`,
+                              ["--char" as string]: `"${char}"`,
                               content: "var(--char)",
                             }}
                             aria-hidden="true"
@@ -127,7 +122,7 @@ export default function Contact() {
                             key={id}
                             className="inline-block"
                             style={{
-                              ["--char" as any]: `"${char}"`,
+                              ["--char" as string]: `"${char}"`,
                               content: "var(--char)",
                             }}
                             aria-hidden="true"
@@ -146,7 +141,7 @@ export default function Contact() {
                             key={id}
                             className="inline-block"
                             style={{
-                              ["--char" as any]: `"${char}"`,
+                              ["--char" as string]: `"${char}"`,
                               content: "var(--char)",
                             }}
                             aria-hidden="true"
