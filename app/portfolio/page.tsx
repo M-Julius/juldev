@@ -238,13 +238,24 @@ export default function Portfolio() {
         onOpenChange={closeModal}
         modal={true}
       >
+        <AnimatePresence>
+          {selectedProject && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-background/30 backdrop-blur-sm z-40"
+            />
+          )}
+        </AnimatePresence>
         <AnimatePresence mode="wait">
           {selectedProject ? (
             <DialogContent
               className={cn(
-                "fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200",
-                "sm:rounded-lg",
-                "sm:max-w-[600px] w-[95vw] border border-border max-h-[90vh] overflow-y-auto"
+                "fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background/95 p-6 shadow-lg duration-200",
+                "rounded-lg backdrop-blur-md",
+                "sm:max-w-[600px] w-[95vw] border border-border max-h-[90vh] overflow-y-auto",
+                "bg-background/80 backdrop-blur-sm"
               )}
             >
               <DialogHeader>

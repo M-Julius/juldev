@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import blurBg from "../assets/local-data-header-blur.webp";
+import { ArrowRight } from "lucide-react";
 
 export default function About() {
   return (
@@ -104,8 +105,9 @@ export default function About() {
                   whileTap={{ scale: 0.95 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <Button variant="default" size="lg">
+                  <Button className="rounded-2xl" variant="default" size="lg">
                     Get in Touch
+                    <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                 </motion.div>
               </Link>

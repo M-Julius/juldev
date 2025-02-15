@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, Phone, MapPin, Loader2, Copy, Check } from "lucide-react";
+import { Mail, Phone, MapPin, Loader2, Send } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 import emailjs from "@emailjs/browser";
 import { useState } from "react";
@@ -24,8 +24,14 @@ import contactBg from "../assets/local-data-header-blur.webp";
 
 const contactInfo = {
   email: "mjulius.dev@gmail.com".split("").map((char, i) => ({ char, id: i })),
-  phone: "+62 813-6672-4126".split("").map((char, i) => ({ char, id: i })),
-  location: "Lahat, Indonesia".split("").map((char, i) => ({ char, id: i })),
+  phone: "+62 813-6672-4126".split(/(?!$)/).map((char, i) => ({ 
+    char: char === " " ? "\u00A0" : char, 
+    id: i 
+  })),
+  location: "Lahat, Indonesia".split(/(?!$)/).map((char, i) => ({ 
+    char: char === " " ? "\u00A0" : char, 
+    id: i 
+  })),
 };
 
 const containerVariants = {
@@ -366,7 +372,7 @@ export default function Contact() {
                       transition={{ duration: 0.5, delay: 0.9 }}
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
-                      className="mt-6"
+                      className="pt-5"
                     >
                       <Button
                         type="submit"
@@ -381,7 +387,10 @@ export default function Contact() {
                             Sending...
                           </>
                         ) : (
-                          "Send Message"
+                          <>
+                            Send Message
+                            <Send className="ml-2 h-5 w-5" />
+                          </>
                         )}
                       </Button>
                     </motion.div>
