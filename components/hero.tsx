@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import heroBg from "../app/assets/local-data-header-blur.webp";
+// import heroBg from "../app/assets/local-data-header-blur.webp";
 /* eslint-disable react/jsx-no-comment-textnodes */
 export default function Hero() {
   return (

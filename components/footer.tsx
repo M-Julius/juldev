@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-comment-textnodes */
 import { Instagram, Github, Linkedin } from "lucide-react";
 import Link from "next/link";
 
@@ -36,7 +37,8 @@ export default function Footer() {
             </Link>
           </div>
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} <span className="text-primary">jul</span>dev. All rights reserved.
+            © {new Date().getFullYear()}{" "}
+            <span className="text-primary">jul</span>dev. All rights reserved.
           </p>
         </div>
       </div>

@@ -6,6 +6,7 @@ import { motion, useInView } from "framer-motion";
 import resumeBg from "../assets/local-data-header-blur.webp";
 import { useRef } from "react";
 import { toast } from "@/components/ui/use-toast";
+import Image from "next/image";
 
 const skills = {
   technical: [
@@ -237,11 +238,14 @@ const CertificateItem = ({ cert, index }: { cert: typeof certificates[0], index:
     >
       <div className="flex justify-between items-start gap-4">
         <div className="flex gap-4">
-          <div className="w-12 h-12 flex-shrink-0">
-            <img 
+          <div className="w-12 h-12 relative flex-shrink-0">
+            <Image 
               src={cert.image} 
               alt={`${cert.name} logo`}
-              className="w-full h-full object-contain"
+              fill
+              sizes="48px"
+              className="object-contain"
+              unoptimized={cert.image.startsWith('https://')}
             />
           </div>
           <div className="space-y-1">
