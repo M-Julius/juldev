@@ -109,7 +109,7 @@ export default function About() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.7 }}
               >
-                My expertise lies in crafting elegant and efficient mobile
+                My expertise lies in crafting elegant and efficient mobile & web
                 solutions, ensuring both functionality and great design.
               </motion.p>
             </motion.div>

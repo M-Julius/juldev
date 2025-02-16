@@ -9,24 +9,25 @@ const services = [
     icon: <Smartphone className="h-12 w-12" />,
     title: "Mobile Development",
     description:
-      "Custom mobile applications built with modern technologies and best practices for iOS and Android.",
+      "Developing mobile applications for iOS and Android with modern technologies, including maintenance and support.",
   },
   {
     icon: <Palette className="h-12 w-12" />,
     title: "UI/UX Design",
     description:
-      "Beautiful and intuitive user interfaces that enhance user experience.",
+      "Creating beautiful and intuitive user interfaces that enhance user experience, with focus on mobile design.",
   },
   {
     icon: <Code2 className="h-12 w-12" />,
     title: "Frontend Development",
     description:
-      "Custom frontend applications built with modern technologies and best practices for web.",
+      "Developing frontend applications for web using React.js, and Next.js, with focus on performance and scalability.",
   },
   {
     icon: <Search className="h-12 w-12" />,
     title: "Problem Solving",
-    description: "Solving problems with code and algorithms.",
+    description:
+      "Solving your problems with code and algorithms.",
   },
 ];
 
@@ -68,9 +69,7 @@ const serviceVariants = {
 export default function Services() {
   return (
     <main className="flex-1">
-      <section
-        className="min-h-screen py-20 relative bg-background"
-      >
+      <section className="min-h-screen py-20 relative bg-background">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -82,7 +81,7 @@ export default function Services() {
             backgroundPosition: "center 5%",
             willChange: "opacity",
             backfaceVisibility: "hidden",
-            WebkitBackfaceVisibility: "hidden"
+            WebkitBackfaceVisibility: "hidden",
           }}
         />
         <motion.div
@@ -93,7 +92,7 @@ export default function Services() {
           style={{
             willChange: "opacity",
             backfaceVisibility: "hidden",
-            WebkitBackfaceVisibility: "hidden"
+            WebkitBackfaceVisibility: "hidden",
           }}
         />
         <div className="container px-4 mt-10 relative">
@@ -157,7 +156,7 @@ export default function Services() {
                       ease: [0.22, 1, 0.36, 1],
                     },
                   }}
-                  className="group p-6 border rounded-lg hover:border-primary transition-all"
+                  className="group p-6 border rounded-lg hover:border-primary transition-all h-full"
                 >
                   <div className="space-y-4">
                     <motion.div

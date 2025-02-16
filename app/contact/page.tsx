@@ -214,7 +214,7 @@ export default function Contact() {
                 transition={{ duration: 0.5, delay: 0.3 }}
                 className="text-2xl font-bold sm:hidden mb-6"
               >
-                Contact Information
+                Contact <span className="text-primary">Information</span>
               </motion.h2>
 
               <motion.div
@@ -303,7 +303,7 @@ export default function Contact() {
                   transition={{ duration: 0.5, delay: 0.3 }}
                   className="text-2xl font-bold sm:hidden mb-8"
                 >
-                  How Can I Help You?
+                  How Can I <span className="text-primary">Help You?</span>
                 </motion.h2>
 
                 <Form {...form}>
